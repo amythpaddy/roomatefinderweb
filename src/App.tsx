@@ -1,9 +1,10 @@
-import './App.css';
+
+import {PostsListing} from "./Posts";
 
 function App() {
     return (
         <div className="App">
-            Welcome to the app
+            <PostsListing />
         </div>
     );
 }
