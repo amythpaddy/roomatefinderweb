@@ -5,6 +5,10 @@ import {Provider} from "react-redux";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {PostsListing} from "./Posts";
 import CreateListing from "./CreatePosting";
+import LoginSignup from "./pages/login/index";
+
+import './index.css'
+import LoginComponent from "./appBar/loginComponent";
 
 const router = createBrowserRouter([
     {
@@ -14,6 +18,10 @@ const router = createBrowserRouter([
     {
         path:"/create_listing",
         element:<CreateListing/>
+    },
+    {
+        path:"/login",
+        element:<LoginSignup/>
     }
 ])
 
@@ -28,6 +36,7 @@ root.render(
           </span>
             <div className="App-action-right">
                 <span className="App-action"><a href="/create_listing">+</a></span>
+                <LoginComponent/>
             </div>
         </header>
         <RouterProvider router={router}/>
