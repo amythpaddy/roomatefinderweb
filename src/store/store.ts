@@ -1,10 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit'
 import postReducer from "./PostStore";
 import loginRegisterReducer from "./LoginSignupStore";
-const store =  configureStore({
-    reducer:{
-        posts:postReducer,
-        loginSignup:loginRegisterReducer
+
+const store = configureStore({
+    reducer: {
+        posts: postReducer,
+        loginSignup: loginRegisterReducer
     },
 });
 export default store;

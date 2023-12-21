@@ -16,12 +16,12 @@ const router = createBrowserRouter([
         element: <PostsListing/>
     },
     {
-        path:"/create_listing",
-        element:<CreateListing/>
+        path: "/create_listing",
+        element: <CreateListing/>
     },
     {
-        path:"/login",
-        element:<LoginSignup/>
+        path: "/login",
+        element: <LoginSignup/>
     }
 ])
 
@@ -29,18 +29,18 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store}>
-    <React.StrictMode>
-        <header className="App-header">
+        <React.StrictMode>
+            <header className="App-header">
           <span>
               <a href={"/"}>Welcome to Roomate Finder</a>
           </span>
-            <div className="App-action-right">
-                <span className="App-action"><a href="/create_listing">+</a></span>
-                <LoginComponent/>
-            </div>
-        </header>
-        <RouterProvider router={router}/>
-    </React.StrictMode>
+                <div className="App-action-right">
+                    <span className="App-action"><a href="/create_listing">+</a></span>
+                    <LoginComponent/>
+                </div>
+            </header>
+            <RouterProvider router={router}/>
+        </React.StrictMode>
     </Provider>
 );
 
