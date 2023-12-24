@@ -7,6 +7,7 @@ import {
   KEY_USER_PHONE,
 } from "../constants";
 import { setUserLogin } from "../store/LoginSignupStore";
+import styled from "styled-components";
 
 export default function LoginComponent() {
   const dispatch = useAppDispatch();
@@ -33,5 +34,15 @@ export default function LoginComponent() {
     }
   });
 
-  return <h3>{userLoggedIn ? userName : <a href={"/login"}>Login</a>}</h3>;
+  return (
+    <ActionItem>
+      {userLoggedIn ? userName : <a href={"/login"}>Login</a>}
+    </ActionItem>
+  );
 }
+
+const ActionItem = styled.span`
+  font-weight: bold;
+  padding: 5px;
+  margin: 0 5px;
+`;
