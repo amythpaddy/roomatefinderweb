@@ -10,6 +10,8 @@ interface LoginRegisterState {
   userid: string;
   rememberUser: boolean;
   phone?: string;
+  haveHousing: boolean;
+  lookingForRoommate: boolean;
 }
 
 const initialState: LoginRegisterState = {
@@ -21,6 +23,8 @@ const initialState: LoginRegisterState = {
   userid: "",
   rememberUser: false,
   phone: "",
+  haveHousing: false,
+  lookingForRoommate: false,
 };
 export const loginRegisterSlice = createSlice({
   name: "login-signup",
@@ -43,6 +47,8 @@ export const loginRegisterSlice = createSlice({
       state.username = action.payload.username;
       state.phone = action.payload.userphone;
       state.email = action.payload.useremail;
+      state.haveHousing = action.payload.hasHousing ?? false;
+      state.lookingForRoommate = action.payload.lookingForRoommates ?? false;
       state.userLoggedIn = true;
     },
     removeLoggedUser: (state, action) => {
@@ -50,6 +56,26 @@ export const loginRegisterSlice = createSlice({
       state.username = "";
       state.phone = "";
       state.userLoggedIn = false;
+    },
+    toggleHaveHousing: (state, action) => {
+      state.haveHousing = !state.haveHousing;
+    },
+    toggleLookingForRoommate: (state, action) => {
+      state.lookingForRoommate = !state.lookingForRoommate;
+    },
+    updateUserDataStore: (state, action) => {
+      if (action.payload.username) {
+        state.username = action.payload.username;
+      }
+      if (action.payload.userphone) {
+        state.phone = action.payload.userphone;
+      }
+      if (action.payload.haveHousing) {
+        state.haveHousing = action.payload.haveHousing;
+      }
+      if (action.payload.lookingForRoommate) {
+        state.lookingForRoommate = action.payload.lookingForRoommate;
+      }
     },
   },
 });
@@ -61,5 +87,8 @@ export const {
   setUserLogin,
   removeLoggedUser,
   toggleRememberUser,
+  toggleHaveHousing,
+  toggleLookingForRoommate,
+  updateUserDataStore,
 } = loginRegisterSlice.actions;
 export default loginRegisterSlice.reducer;

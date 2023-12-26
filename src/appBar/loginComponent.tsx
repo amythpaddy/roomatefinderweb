@@ -36,7 +36,11 @@ export default function LoginComponent() {
 
   return (
     <ActionItem>
-      {userLoggedIn ? userName : <a href={"/login"}>Login</a>}
+      {userLoggedIn ? (
+        <a href={"/user-profile"}>{userName}</a>
+      ) : (
+        <a href={"/login"}>Login</a>
+      )}
     </ActionItem>
   );
 }

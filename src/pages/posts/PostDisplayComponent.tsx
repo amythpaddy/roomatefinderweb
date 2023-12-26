@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { UsersDataModel } from "../../model/usersModel";
 import Avvvatars from "avvvatars-react";
+import { useNavigate } from "react-router";
 
 type DisplayPostData = {
   title: string;
@@ -9,6 +10,7 @@ type DisplayPostData = {
   userdata: UsersDataModel;
 };
 export const DisplayPost = ({ title, message, userdata }: DisplayPostData) => {
+  const navigate = useNavigate();
   return (
     <Container>
       <AvatarContainer>

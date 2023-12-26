@@ -3,6 +3,8 @@ export interface UsersDataModel {
   userid: string;
   username: string;
   useremail: string;
+  hasHousing?: boolean;
+  lookingForRoommates?: boolean;
 }
 
 export interface FirebaseResponseModel {

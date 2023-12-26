@@ -10,6 +10,7 @@ import LoginComponent from "./appBar/loginComponent";
 import CreatePost from "./pages/posts/createPost";
 import { RoomatePosts } from "./pages/posts/roomatePosts";
 import styled from "styled-components";
+import { UserProfile } from "./pages/users/UserProfile";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginSignup />,
+  },
+  {
+    path: "/user-profile",
+    element: <UserProfile />,
   },
 ]);
 
