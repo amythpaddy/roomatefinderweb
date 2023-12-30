@@ -18,8 +18,8 @@ export const UserDetails = ({
         <div>
           <h1>{userDetails!.username}</h1>
         </div>
-        <h3>has house?</h3>
-        <h3>Looking for roomate?</h3>
+        <h3>has house? {userDetails!.hasHousing}</h3>
+        <h3>Looking for roomate? {userDetails?.lookingForRoommates}</h3>
         <div>
           <button>Connect</button>
         </div>

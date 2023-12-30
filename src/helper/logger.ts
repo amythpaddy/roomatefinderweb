@@ -4,7 +4,7 @@ import axios from "axios";
 export const updateUserData = async (): Promise<GetPostModel> => {
   const postsData: GetPostModel = { error: false, message: "", data: [] };
   await axios
-    .get("http://localhost:3000/v1/allPost")
+    .get(`${process.env.REACT_APP_BASE_URL}/v1/allPost`)
     .then((value) => {
       console.log("value", value);
       postsData.data = value.data;

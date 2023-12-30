@@ -8,6 +8,7 @@ import {
 } from "../constants";
 import { setUserLogin } from "../store/LoginSignupStore";
 import styled from "styled-components";
+import { getUserApi } from "../helper/userApi";
 
 export default function LoginComponent() {
   const dispatch = useAppDispatch();
@@ -19,6 +20,20 @@ export default function LoginComponent() {
   );
   useEffect(() => {
     const userid = localStorage.getItem(KEY_USER_ID) ?? "";
+    if (userid) {
+      getUserApi(userid).then((response) =>
+        dispatch(
+          setUserLogin({
+            userid: response.data!.userid,
+            username: response.data!.username,
+            useremail: response.data!.useremail,
+            userphone: response.data!.userphone,
+            hasHousing: response.data!.hasHousing ?? false,
+            lookingForRoommates: response.data!.lookingForRoommates ?? true,
+          }),
+        ),
+      );
+    }
     const username = localStorage.getItem(KEY_USER_NAME) ?? "";
     const useremail = localStorage.getItem(KEY_USER_EMAIL) ?? "";
     const userphone = localStorage.getItem(KEY_USER_PHONE) ?? "";

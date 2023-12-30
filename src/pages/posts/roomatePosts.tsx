@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { getPost } from "../../helper/postApi";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { updatePost } from "../../store/PostStore";
 import { DisplayPost } from "./PostDisplayComponent";
 import { UserDetails } from "../users/UserDetails";
+import { CreatePostModel } from "../../model/PostsModel";
+import { UsersDataModel } from "../../model/usersModel";
 
 export function RoomatePosts() {
   const dispatch = useAppDispatch();
@@ -12,10 +13,14 @@ export function RoomatePosts() {
   useEffect(() => {
     getPost().then((allPosts) => dispatch(updatePost(allPosts.data)));
   }, []);
-  // @ts-ignore
-  const posts: ReadPostModel[] = useSelector((state) => state.posts.posts);
+  const posts: CreatePostModel[] = useAppSelector((state) => state.posts.posts);
   const [showDetail, setShowDetail] = useState(false);
-  const [selectedUser, setSelectedUser] = useState(null);
+  const selectedUserInitial: UsersDataModel | null = {
+    userid: "",
+    username: "",
+    useremail: "",
+  };
+  const [selectedUser, setSelectedUser] = useState(selectedUserInitial);
   return (
     <div>
       {posts.length === 0
@@ -25,13 +30,13 @@ export function RoomatePosts() {
               <div
                 onClick={() => {
                   setShowDetail(true);
-                  setSelectedUser(post);
+                  setSelectedUser(post.userdata!);
                 }}
               >
                 <DisplayPost
                   title={post.title}
                   message={post.message}
-                  userdata={post.userdata}
+                  userdata={post.userdata!}
                 />
               </div>
             );
@@ -41,7 +46,7 @@ export function RoomatePosts() {
           userDetails={selectedUser}
           onCloseClick={() => {
             setShowDetail(false);
-            setSelectedUser(null);
+            setSelectedUser(selectedUserInitial);
           }}
         />
       )}

@@ -11,6 +11,7 @@ import {
 import { getFirebaseConfig } from "./firebase-config";
 import axios from "axios";
 import { FirebaseResponseModel } from "../model/usersModel";
+import { getUserApi } from "../helper/userApi";
 
 const app = initializeApp(getFirebaseConfig());
 const auth = getAuth(app);
@@ -23,31 +24,7 @@ export const signInUser = async (
     return { error: true, message: "email or password missing" };
   return signInWithEmailAndPassword(auth, email, password)
     .then(async (user): Promise<FirebaseResponseModel> => {
-      var response: FirebaseResponseModel = { error: false, message: "" };
-      await axios
-        .post("http://localhost:3000/v1/getUserDetail", {
-          userid: user.user.uid,
-        })
-        .then((res): void => {
-          response = {
-            message: "User Data Found",
-            data: {
-              username: res.data.data.username,
-              userid: res.data.data.userid,
-              userphone: res.data.data.userphone,
-              useremail: res.data.data.useremail,
-            },
-            error: false,
-          };
-        })
-        .catch((error): void => {
-          response = {
-            message:
-              "User Data Not Found, Please provide name and contact info from profile",
-            error: false,
-          };
-        });
-      return response;
+      return await getUserApi(user.user.uid);
     })
     .catch((error): FirebaseResponseModel => {
       switch (error.code) {
@@ -84,7 +61,7 @@ export const newUser = async (
     .then(async (newUser) => {
       var response: FirebaseResponseModel = { error: false, message: "" };
       await axios
-        .post("http://localhost:3000/v1/createUser", {
+        .post(`${process.env.REACT_APP_BASE_URL}/v1/createUser`, {
           userid: newUser.user.uid,
           username: username,
           useremail: newUser.user.email,

@@ -75,6 +75,9 @@ function LoginSignup() {
                       username: response.data!.username,
                       useremail: response.data!.useremail,
                       userphone: response.data!.userphone,
+                      hasHousing: response.data!.hasHousing ?? false,
+                      lookingForRoommates:
+                        response.data!.lookingForRoommates ?? true,
                     }),
                   );
                 }

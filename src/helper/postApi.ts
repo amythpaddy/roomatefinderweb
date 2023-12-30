@@ -8,7 +8,7 @@ export const createPost = async ({
 }: CreatePostModel) => {
   await axios
     .post(
-      "http://localhost:3000/v1/createPost",
+      `${process.env.REACT_APP_BASE_URL}/v1/createPost`,
       { title, message },
       {
         headers: { Authorization: `${userid}` },
@@ -25,7 +25,7 @@ export const createPost = async ({
 export const getPost = async (): Promise<GetPostModel> => {
   const postsData: GetPostModel = { error: false, message: "", data: [] };
   await axios
-    .get("http://localhost:3000/v1/allPost")
+    .get(`${process.env.REACT_APP_BASE_URL}/v1/allPost`)
     .then((value) => {
       console.log("value", value);
       postsData.data = value.data;
