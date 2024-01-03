@@ -8,14 +8,14 @@ import LoginSignup from "./pages/login/index";
 import "./index.css";
 import LoginComponent from "./appBar/loginComponent";
 import CreatePost from "./pages/posts/createPost";
-import { RoomatePosts } from "./pages/posts/roomatePosts";
 import styled from "styled-components";
 import { UserProfile } from "./pages/users/UserProfile";
+import { Home } from "./pages/home/home";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RoomatePosts />,
+    element: <Home />,
   },
   {
     path: "/create_listing",
@@ -32,10 +32,19 @@ const router = createBrowserRouter([
 ]);
 
 const Header = styled.header`
-  background-color: black;
-  color: white;
+  background-color: white;
+  box-shadow: #039be5;
+  color: #242424;
   display: flex;
   justify-content: space-around;
+`;
+
+const Title = styled.span`
+  font-size: 32px;
+`;
+
+const SubTitle = styled.span`
+  font-size: 20px;
 `;
 const NavActionBar = styled.div`
   display: flex;
@@ -58,12 +67,15 @@ root.render(
     <React.StrictMode>
       <Header className="App-header">
         <AppTitle>
-          <a href={"/"}>Roommate Finder</a>
+          <a href={"/"}>
+            <Title>Roommate Finder</Title>
+            <SubTitle> | Find your next Roommate</SubTitle>
+          </a>
         </AppTitle>
         <NavActionBar className="App-action-right">
-          <ActionItem className="App-action">
-            <a href="/create_listing">+</a>
-          </ActionItem>
+          {/*<ActionItem className="App-action">*/}
+          {/*  <a href="/create_listing">+</a>*/}
+          {/*</ActionItem>*/}
           <LoginComponent />
         </NavActionBar>
       </Header>
