@@ -47,13 +47,24 @@ export const userStateListener = (callback: NextOrObserver<User>) => {
 };
 
 export const SignOutUser = async () => await signOut(auth);
-
-export const newUser = async (
-  email: string,
-  password: string,
-  username: string,
-  phone: string | undefined,
-): Promise<FirebaseResponseModel> => {
+export type NewUserDetails = {
+  email: string;
+  password: string;
+  firstName: string;
+  middleName: string | undefined;
+  lastName: string;
+  phone: string;
+  collegeEmail: string;
+};
+export const newUser = async ({
+  email,
+  password,
+  firstName,
+  middleName,
+  lastName,
+  collegeEmail,
+  phone,
+}: NewUserDetails): Promise<FirebaseResponseModel> => {
   if (!email && !password) {
     return { error: true, message: "email or password missing" };
   }
@@ -62,10 +73,13 @@ export const newUser = async (
       var response: FirebaseResponseModel = { error: false, message: "" };
       await axios
         .post(`${process.env.REACT_APP_BASE_URL}/v1/createUser`, {
-          userid: newUser.user.uid,
-          username: username,
-          useremail: newUser.user.email,
-          userphone: phone,
+          userId: newUser.user.uid,
+          firstName: firstName,
+          middleName: middleName,
+          lastName: lastName,
+          userEmail: newUser.user.email,
+          userPhone: phone,
+          collegeEmail: collegeEmail,
         })
         .then((res): void => {
           response = {

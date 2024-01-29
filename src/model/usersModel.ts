@@ -1,8 +1,10 @@
 export interface UsersDataModel {
-  userphone?: string;
-  userid: string;
-  username: string;
-  useremail: string;
+  userPhone?: string;
+  userId: string;
+  firstName?: string;
+  middleName?: string;
+  lastName?: string;
+  userEmail?: string;
   hasHousing?: boolean;
   lookingForRoommates?: boolean;
 }

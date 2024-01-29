@@ -12,6 +12,7 @@ interface LoginRegisterState {
   phone?: string;
   haveHousing: boolean;
   lookingForRoommate: boolean;
+  loading: boolean;
 }
 
 const initialState: LoginRegisterState = {
@@ -25,6 +26,7 @@ const initialState: LoginRegisterState = {
   phone: "",
   haveHousing: false,
   lookingForRoommate: false,
+  loading: false,
 };
 export const loginRegisterSlice = createSlice({
   name: "login-signup",
@@ -43,10 +45,10 @@ export const loginRegisterSlice = createSlice({
       state.rememberUser = !state.rememberUser;
     },
     setUserLogin: (state, action: { payload: UsersDataModel; type: any }) => {
-      state.userid = action.payload.userid;
-      state.username = action.payload.username;
-      state.phone = action.payload.userphone;
-      state.email = action.payload.useremail;
+      state.userid = action.payload.userId;
+      state.username = action.payload.firstName ?? "";
+      state.phone = action.payload.userPhone;
+      state.email = action.payload.userEmail ?? "";
       state.haveHousing = action.payload.hasHousing ?? false;
       state.lookingForRoommate = action.payload.lookingForRoommates ?? false;
       state.userLoggedIn = true;

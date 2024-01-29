@@ -16,7 +16,7 @@ export const UserDetails = ({
       <div onClick={onCloseClick}>x</div>
       <Center>
         <div>
-          <h1>{userDetails!.username}</h1>
+          <h1>{userDetails!.firstName}</h1>
         </div>
         <h3>has house? {userDetails!.hasHousing}</h3>
         <h3>Looking for roomate? {userDetails?.lookingForRoommates}</h3>

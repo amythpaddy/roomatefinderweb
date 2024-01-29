@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 type LoginProps = {
   toggleLoginScreen: any;
   loginUser: any;
+  loading: boolean;
 };
 
-function Login({ toggleLoginScreen, loginUser }: LoginProps) {
+function Login({ toggleLoginScreen, loading, loginUser }: LoginProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberUser, setRememberUser] = useState(false);
@@ -51,7 +52,7 @@ function Login({ toggleLoginScreen, loginUser }: LoginProps) {
               required
             />
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mb-24">
             <div className="flex items-start">
               <div className="flex items-center h-5">
                 <input
@@ -78,10 +79,12 @@ function Login({ toggleLoginScreen, loginUser }: LoginProps) {
           </div>
           <Link
             to={"#"}
-            className="w-full text-bg-danger bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none
+            className={`w-full text-bg-danger ${
+              loading ? "bg-gray-600" : "bg-blue-500 hover:bg-blue-700"
+            } focus:ring-4 focus:outline-none text-white 
                              focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600
-                             dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-            onClick={() => loginUser(email, password, rememberUser)}
+                             dark:hover:bg-primary-700 dark:focus:ring-primary-800`}
+            onClick={() => !loading && loginUser(email, password, rememberUser)}
           >
             Sign in
           </Link>

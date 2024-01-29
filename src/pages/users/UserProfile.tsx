@@ -7,6 +7,7 @@ import {
   updateUserDataStore,
 } from "../../store/LoginSignupStore";
 import { updateUserApi } from "../../helper/userApi";
+import { UserDetailTextInput } from "./components/UserDetailInput";
 
 export const UserProfile = () => {
   const [editProfile, setEditProfile] = useState(false);
@@ -24,53 +25,41 @@ export const UserProfile = () => {
   );
   return (
     <LoginContainer>
-      <div className={"m-5"}>
-        <label
-          htmlFor="username"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        >
-          Your name
-        </label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          value={username}
-          placeholder="Update your name"
-          readOnly={!editProfile}
-          className={`${
-            editProfile ? "bg-white" : "bg-gray-50"
-          } border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-          onChange={(e) =>
-            dispatch(updateUserDataStore({ username: e.target.value }))
-          }
-          required
-        />
-      </div>
+      <UserDetailTextInput
+        label={"Your Name"}
+        name={"username"}
+        value={username}
+        readOnly={!editProfile}
+        onChange={(e: any) =>
+          dispatch(updateUserDataStore({ username: e.target.value }))
+        }
+        required={false}
+        placeholder={"Update your name"}
+      />
+      <UserDetailTextInput
+        label={"Phone Number"}
+        name={"userphone"}
+        value={userphone ?? ""}
+        readOnly={!editProfile}
+        onChange={(e: any) =>
+          dispatch(updateUserDataStore({ userphone: e.target.value }))
+        }
+        required={false}
+        placeholder={"Update your phone number"}
+      />
 
-      <div className={"m-5"}>
-        <label
-          htmlFor="userphone"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        >
-          Your phone number
-        </label>
-        <input
-          type="tel"
-          name="userphone"
-          id="userphone"
-          placeholder="Update your phone number"
-          readOnly={!editProfile}
-          value={userphone}
-          className={`${
-            editProfile ? "bg-white" : "bg-gray-50"
-          } border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-          onChange={(e) =>
-            dispatch(updateUserDataStore({ userphone: e.target.value }))
-          }
-          required
-        />
-      </div>
+      <UserDetailTextInput
+        label={"College"}
+        name={"college"}
+        value={userphone ?? ""}
+        readOnly={!editProfile}
+        onChange={(e: any) =>
+          dispatch(updateUserDataStore({ userphone: e.target.value }))
+        }
+        required={false}
+        placeholder={"Update your phone number"}
+      />
+
       <div className={"m-5"}>
         <label className="relative inline-flex items-center cursor-pointer">
           <input
@@ -119,10 +108,10 @@ export const UserProfile = () => {
             className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
             onClick={() => {
               updateUserApi({
-                userid: userid,
-                userphone: userphone,
-                username: username,
-                useremail: "",
+                userId: userid,
+                userPhone: userphone,
+                firstName: username,
+                userEmail: "",
                 hasHousing: haveHousing,
                 lookingForRoommates: lookingForRoommate,
               });

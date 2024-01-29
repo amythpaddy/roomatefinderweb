@@ -14,7 +14,7 @@ export const DisplayPost = ({ title, message, userdata }: DisplayPostData) => {
   return (
     <Container>
       <AvatarContainer>
-        <Avvvatars value={userdata.username} size={42} />
+        <Avvvatars value={userdata.firstName ?? ""} size={42} />
       </AvatarContainer>
       <div>
         <Title>{title}</Title>

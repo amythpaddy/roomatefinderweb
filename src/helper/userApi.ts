@@ -2,9 +2,12 @@ import axios from "axios";
 import { FirebaseResponseModel, UsersDataModel } from "../model/usersModel";
 
 export const updateUserApi = async ({
-  userid,
-  username,
-  userphone,
+  userId,
+  firstName,
+  middleName,
+  lastName,
+  userEmail,
+  userPhone,
   hasHousing,
   lookingForRoommates,
 }: UsersDataModel) => {
@@ -12,14 +15,14 @@ export const updateUserApi = async ({
     .put(
       `${process.env.REACT_APP_BASE_URL}/v1/updateUserDetail`,
       {
-        userid,
-        username,
-        userphone,
+        userId,
+        firstName,
+        userPhone,
         hasHousing,
         lookingForRoommates,
       },
       {
-        headers: { Authorization: `${userid}` },
+        headers: { Authorization: `${userId}` },
       },
     )
     .then((value) => {
@@ -36,7 +39,7 @@ export const getUserApi = async (userid: string, currentUserId?: string) => {
     .post(
       `${process.env.REACT_APP_BASE_URL}/v1/getUserDetail`,
       {
-        userid: userid,
+        userId: userid,
       },
       {
         headers: { Authorization: `${currentUserId ?? userid}` },
@@ -46,10 +49,10 @@ export const getUserApi = async (userid: string, currentUserId?: string) => {
       response = {
         message: "User Data Found",
         data: {
-          username: res.data.data.username,
-          userid: res.data.data.userid,
-          userphone: res.data.data.userphone,
-          useremail: res.data.data.useremail,
+          firstName: res.data.data.firstName,
+          userId: res.data.data.userId,
+          userPhone: res.data.data.userPhone,
+          userEmail: res.data.data.userEmail,
           hasHousing: res.data.data.hasHousing,
           lookingForRoommates: res.data.data.lookingForRoommates,
         },

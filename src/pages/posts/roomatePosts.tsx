@@ -16,9 +16,9 @@ export function RoomatePosts() {
   const posts: CreatePostModel[] = useAppSelector((state) => state.posts.posts);
   const [showDetail, setShowDetail] = useState(false);
   const selectedUserInitial: UsersDataModel | null = {
-    userid: "",
-    username: "",
-    useremail: "",
+    userId: "",
+    firstName: "",
+    userEmail: "",
   };
   const [selectedUser, setSelectedUser] = useState(selectedUserInitial);
   return (
