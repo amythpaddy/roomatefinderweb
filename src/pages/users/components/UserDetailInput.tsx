@@ -3,7 +3,7 @@ import React from "react";
 type UserTextInputParams = {
   name: string;
   label: string;
-  value: string;
+  value: string | number;
   readOnly: boolean;
   onChange: any;
   required?: boolean;

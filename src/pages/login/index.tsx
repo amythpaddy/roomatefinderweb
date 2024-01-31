@@ -78,7 +78,7 @@ function LoginSignup() {
                     firstName: response.data!.firstName,
                     middleName: response.data!.middleName,
                     userPhone: response.data!.userPhone,
-                    hasHousing: response.data!.hasHousing ?? false,
+                    haveHousing: response.data!.haveHousing ?? false,
                     lookingForRoommates:
                       response.data!.lookingForRoommates ?? true,
                   }),

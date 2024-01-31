@@ -1,5 +1,9 @@
 import axios from "axios";
-import { FirebaseResponseModel, UsersDataModel } from "../model/usersModel";
+import {
+  ApiResponseModel,
+  FirebaseResponseModel,
+  UsersDataModel,
+} from "../model/usersModel";
 
 export const updateUserApi = async ({
   userId,
@@ -8,7 +12,7 @@ export const updateUserApi = async ({
   lastName,
   userEmail,
   userPhone,
-  hasHousing,
+  haveHousing,
   lookingForRoommates,
 }: UsersDataModel) => {
   await axios
@@ -18,7 +22,7 @@ export const updateUserApi = async ({
         userId,
         firstName,
         userPhone,
-        hasHousing,
+        haveHousing,
         lookingForRoommates,
       },
       {
@@ -53,8 +57,53 @@ export const getUserApi = async (userid: string, currentUserId?: string) => {
           userId: res.data.data.userId,
           userPhone: res.data.data.userPhone,
           userEmail: res.data.data.userEmail,
-          hasHousing: res.data.data.hasHousing,
+          haveHousing: res.data.data.haveHousing,
           lookingForRoommates: res.data.data.lookingForRoommates,
+        },
+        error: false,
+      };
+    })
+    .catch((error): void => {
+      response = {
+        message:
+          "User Data Not Found, Please provide name and contact info from profile",
+        error: false,
+      };
+    });
+  return response;
+};
+
+export const getUserProfileDataApi = async (
+  userid: string,
+  currentUserId?: string,
+) => {
+  var response: ApiResponseModel = { error: false };
+  await axios
+    .post(
+      `${process.env.REACT_APP_BASE_URL}/v1/getUserProfile`,
+      {
+        userId: userid,
+      },
+      {
+        headers: { Authorization: `${currentUserId ?? userid}` },
+      },
+    )
+    .then((res): void => {
+      response = {
+        message: "User Data Found",
+        data: {
+          firstName: res.data.data.firstName,
+          lastName: res.data.data.lastName,
+          middleName: res.data.data.middleName,
+          userPhone: res.data.data.userPhone,
+          college: res.data.data.college,
+          major: res.data.data.major,
+          age: res.data.data.age,
+          distanceFromCollege: res.data.data.distanceFromCollege,
+          countryOfOrigin: res.data.data.countryOfOrigin,
+          gender: res.data.data.gender,
+          haveHousing: res.data.data.haveHousing,
+          lookingForRoommate: res.data.data.lookingForRoommate,
         },
         error: false,
       };

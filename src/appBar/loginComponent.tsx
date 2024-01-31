@@ -25,7 +25,7 @@ export default function LoginComponent() {
             firstName: response.data!.firstName ?? "Update Name",
             userEmail: response.data!.userEmail ?? "Update Email",
             userPhone: response.data!.userPhone ?? "Update Phone",
-            hasHousing: response.data!.hasHousing ?? false,
+            haveHousing: response.data!.haveHousing ?? false,
             lookingForRoommates: response.data!.lookingForRoommates ?? true,
           }),
         ),

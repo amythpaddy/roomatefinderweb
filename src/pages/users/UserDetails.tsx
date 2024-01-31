@@ -18,7 +18,7 @@ export const UserDetails = ({
         <div>
           <h1>{userDetails!.firstName}</h1>
         </div>
-        <h3>has house? {userDetails!.hasHousing}</h3>
+        <h3>has house? {userDetails!.haveHousing}</h3>
         <h3>Looking for roomate? {userDetails?.lookingForRoommates}</h3>
         <div>
           <button>Connect</button>

@@ -49,7 +49,7 @@ export const loginRegisterSlice = createSlice({
       state.username = action.payload.firstName ?? "";
       state.phone = action.payload.userPhone;
       state.email = action.payload.userEmail ?? "";
-      state.haveHousing = action.payload.hasHousing ?? false;
+      state.haveHousing = action.payload.haveHousing ?? false;
       state.lookingForRoommate = action.payload.lookingForRoommates ?? false;
       state.userLoggedIn = true;
     },

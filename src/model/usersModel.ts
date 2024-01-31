@@ -5,7 +5,7 @@ export interface UsersDataModel {
   middleName?: string;
   lastName?: string;
   userEmail?: string;
-  hasHousing?: boolean;
+  haveHousing?: boolean;
   lookingForRoommates?: boolean;
 }
 
@@ -14,3 +14,11 @@ export interface FirebaseResponseModel {
   data?: UsersDataModel;
   error: boolean;
 }
+
+export type ApiResponseModel = {
+  message?: string;
+  data?: any;
+  error: boolean;
+  errorMessage?: string;
+  errorCode?: number;
+};
